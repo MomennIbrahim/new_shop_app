@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:route_app/core/widgets/custom_navigator.dart';
 import 'package:route_app/features/layout/presentation/screens/details_screen/details_screen.dart';
@@ -123,7 +124,7 @@ class ProductItem extends StatelessWidget {
                             color: Colors.white,
                           )
                         : Icon(
-                            Icons.favorite_outline,
+                           IconlyBold.heart,
                             color: kPrimaryColor,
                           ),
                   ),

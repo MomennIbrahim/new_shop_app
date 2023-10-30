@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_iconly/flutter_iconly.dart';
 import '../../../../../core/constance.dart';
 import '../../controller/layout_cubit/layout_cubit.dart';
 import '../../controller/layout_cubit/layout_state.dart';
@@ -16,25 +17,25 @@ class CustomBottomNavBar extends StatelessWidget {
           bottomNavBarItem(
               isSelect:
                   LayoutCubit.get(context).currentIndex == 0 ? true : false,
-              iconData: Icons.home_outlined,
+              iconData: IconlyLight.home,
               label: 'Home',
               toolTip: 'Home'),
           bottomNavBarItem(
               isSelect:
                   LayoutCubit.get(context).currentIndex == 1 ? true : false,
-              iconData: Icons.category_outlined,
+              iconData: IconlyLight.category,
               label: 'Category',
               toolTip: 'Category'),
           bottomNavBarItem(
               isSelect:
                   LayoutCubit.get(context).currentIndex == 2 ? true : false,
-              iconData: Icons.favorite_border_outlined,
+              iconData: IconlyLight.heart,
               label: 'Favorite',
               toolTip: 'Favorite'),
           bottomNavBarItem(
               isSelect:
                   LayoutCubit.get(context).currentIndex == 3 ? true : false,
-              iconData: Icons.person_outline,
+              iconData: IconlyLight.profile,
               label: 'Person',
               toolTip: 'Person'),
         ];
