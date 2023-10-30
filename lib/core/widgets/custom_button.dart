@@ -13,6 +13,7 @@ class CustomButton extends StatelessWidget {
     this.width = double.infinity,
     this.height = 64.0,
     this.paddingHorizontal = 16.0,
+    this.icon, this.hasIcon = false,
   });
 
   final String text;
@@ -23,6 +24,8 @@ class CustomButton extends StatelessWidget {
   final double width;
   final double height;
   final double paddingHorizontal;
+  final IconData? icon;
+  final bool hasIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +41,16 @@ class CustomButton extends StatelessWidget {
             onPressed();
           },
           color: buttonColor,
-          child: Text(
+          child: hasIcon? Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Icon(icon,color: Colors.white,),
+              Text(
+                text,
+                style: style,
+              ),
+            ],
+          ): Text(
             text,
             style: style,
           ),

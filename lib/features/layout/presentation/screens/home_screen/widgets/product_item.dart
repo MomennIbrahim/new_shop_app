@@ -24,7 +24,7 @@ class ProductItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: (){
-        customNavigator(context: context, widget: DetailsScreen());
+        customNavigator(context: context, widget: DetailsScreen(index: index,));
       },
       child: Card(
         elevation: 3.0,

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:route_app/core/error/error.dart';
 import 'package:route_app/features/layout/data/repository/base_home_repository.dart';
+import 'package:route_app/features/layout/presentation/controller/banner_cubit/banner_cubit.dart';
 import '../../../data/model/product_model1/product_model.dart';
 
 part 'product_state.dart';
@@ -39,5 +40,12 @@ class ProductCubit extends Cubit<ProductState> {
     }, (productModel) {
       emit(AddFavoriteSuccessState(productModel));
     });
+  }
+
+  int currentIndex=0;
+
+  changeIndicator(index){
+    currentIndex = index;
+    emit(ChangeIndexOfIndicatorState());
   }
 }

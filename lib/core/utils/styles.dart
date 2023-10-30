@@ -32,10 +32,11 @@ class Styles {
 
   static TextStyle styleWithLineThrough11 = TextStyle(
       fontSize: 11.0.sp,
-      color: const Color(0xff004182),
+      color:Colors.red,
       fontWeight: FontWeight.w400,
       letterSpacing: -0.165,
-      decoration: TextDecoration.lineThrough);
+      decoration: TextDecoration.lineThrough,
+  );
 
   static TextStyle style16 = TextStyle(
     fontSize: 16.0.sp,

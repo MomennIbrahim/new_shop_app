@@ -5,6 +5,8 @@ abstract class ProductState {}
 
 class ProductInitial extends ProductState {}
 
+class ChangeIndexOfIndicatorState extends ProductState {}
+
 class ChangeFavoriteIconState extends ProductState{}
 
 class GetProductDataLoadingState extends ProductState{}

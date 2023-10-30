@@ -17,6 +17,7 @@ import '../../../../../core/widgets/custom_navigator.dart';
 import '../../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../auth/presentation/screens/widgets/text_up_field.dart';
 import '../../controller/person_cubit/person_cubit.dart';
+import '../details_screen/widgets/route_logo_and_back_button.dart';
 
 class EditUserPhoneScreen extends StatelessWidget {
   EditUserPhoneScreen({
@@ -53,19 +54,7 @@ class EditUserPhoneScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          icon: Icon(
-                            Icons.arrow_back_ios_new,
-                            color: kPrimaryColor,
-                          )),
-                      SvgPicture.asset('assets/images/home-route.svg'),
-                    ],
-                  ),
+                  const RouteLogoAndArrowBack(),
                   SizedBox(
                     height: 24.h,
                   ),
