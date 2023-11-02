@@ -6,19 +6,22 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:route_app/core/constance.dart';
 import 'package:route_app/core/utils/local_storage.dart';
-import 'package:route_app/features/layout/data/repository/home_repository_implementation.dart';
-import 'package:route_app/features/layout/presentation/controller/categories_cubit/categories_cubit.dart';
-import 'package:route_app/features/layout/presentation/controller/favorite_cubit/favorite_cubit.dart';
-import 'package:route_app/features/layout/presentation/controller/person_cubit/person_cubit.dart';
-import 'package:route_app/features/layout/presentation/controller/product_cubit/product_cubit.dart';
-import 'package:route_app/features/layout/presentation/controller/update_cubit/update_cubit.dart';
-import 'package:route_app/features/layout/presentation/screens/person_screen/person_screen.dart';
+import 'package:route_app/features/cart/data/repository/cart_repository_implementation.dart';
+import 'package:route_app/features/cart/presentation/controller/cart_cubit.dart';
+import 'package:route_app/features/categories/data/repository/categories_repository_implementation.dart';
+import 'package:route_app/features/favorite/data/repository/favorite_repository_implementation.dart';
+import 'package:route_app/features/person/data/repository/person_repository_implementation.dart';
 import 'package:route_app/features/splash/splash_screen.dart';
 import 'core/bloc_observe.dart';
 import 'core/utils/servic_locator.dart';
-import 'features/layout/presentation/controller/banner_cubit/banner_cubit.dart';
+import 'features/categories/presentation/controller/categories_cubit/categories_cubit.dart';
+import 'features/favorite/presentation/controller/favorite_cubit/favorite_cubit.dart';
+import 'features/home/data/repository/home_repositories_implementation.dart';
+import 'features/home/presentation/controller/banner_cubit/banner_cubit.dart';
+import 'features/home/presentation/controller/product_cubit/product_cubit.dart';
+import 'features/home/presentation/controller/sub_categories_cubit/sub_categories_cubit.dart';
 import 'features/layout/presentation/controller/layout_cubit/layout_cubit.dart';
-import 'features/layout/presentation/controller/sub_categories_cubit/sub_categories_cubit.dart';
+import 'features/person/presentation/controller/person_cubit/person_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -49,33 +52,37 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) =>
-              BannerCubit(getIt.get<HomeRepositoryImplementation>())
+              BannerCubit(getIt.get<HomeRepositoriesImplementation>())
                 ..getBannerData()
         ),
         BlocProvider(
             create: (context) =>
-            CategoriesCubit(getIt.get<HomeRepositoryImplementation>())
+            CategoriesCubit(getIt.get<CategoriesRepositoryImplementation>())
               ..getCategoriesData()
         ),
         BlocProvider(
             create: (context) =>
-            SubCategoriesCubit(getIt.get<HomeRepositoryImplementation>())
+            SubCategoriesCubit(getIt.get<HomeRepositoriesImplementation>())
               ..getSubCategoriesData()
         ),
         BlocProvider(
             create: (context) =>
-            ProductCubit(getIt.get<HomeRepositoryImplementation>())
+            ProductCubit(getIt.get<HomeRepositoriesImplementation>())
               ..getProductData()
         ),
         BlocProvider(
             create: (context) =>
-            FavoriteCubit(getIt.get<HomeRepositoryImplementation>())
+            FavoriteCubit(getIt.get<FavoriteRepositoryImplementation>())
               ..getFavoriteData()
         ),
         BlocProvider(
             create: (context) =>
-            PersonCubit(getIt.get<HomeRepositoryImplementation>())
+            PersonCubit(getIt.get<PersonRepositoryImplementation>())
               ..getPersonData()
+        ),
+        BlocProvider(
+            create: (context) =>
+            CartCubit(getIt.get<CartRepositoriesImplementation>())
         ),
       ],
       child: ScreenUtilInit(
@@ -87,6 +94,13 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             fontFamily: 'Poppins',
             primaryColor: kPrimaryColor,
+            appBarTheme: AppBarTheme(
+              elevation: 0.0,
+              backgroundColor: Colors.transparent,
+              iconTheme: IconThemeData(
+                color: kPrimaryColor
+              )
+            )
             // primarySwatch: MaterialColor(0xff004182, {
             //   50:kPrimaryColor,
             //   100:kPrimaryColor,

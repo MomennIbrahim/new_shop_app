@@ -3,12 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:route_app/core/utils/local_storage.dart';
 import 'package:route_app/core/widgets/custom_navigator.dart';
-import 'package:route_app/features/layout/presentation/controller/layout_cubit/layout_cubit.dart';
-import 'package:route_app/features/layout/presentation/controller/person_cubit/person_cubit.dart';
 import 'package:route_app/features/layout/presentation/screens/layout_screen.dart';
 import '../../../../../core/constance.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../../../core/widgets/custom_button.dart';
+import '../../../../person/presentation/controller/person_cubit/person_cubit.dart';
 import '../../controller/sign_in_cubit/sign_in_cubit.dart';
 import '../../controller/sign_in_cubit/sign_in_state.dart';
 
