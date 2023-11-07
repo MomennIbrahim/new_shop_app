@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:route_app/core/widgets/logo_text.dart';
 import 'package:route_app/features/favorite/presentation/screens/favorite_screen/widgets/favorite_item.dart';
 import '../../../../../core/widgets/custom_media_query.dart';
 import '../../../../layout/presentation/screens/widgets/search_and_cart_row.dart';
@@ -19,7 +20,7 @@ class FavoriteScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SvgPicture.asset('assets/images/home-route.svg'),
+          const LogoText(),
           SizedBox(
             height: mediaQueryOfHeight(context: context, multiBy: 0.05),
           ),

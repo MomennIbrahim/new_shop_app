@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:route_app/core/widgets/logo_text.dart';
 import 'package:route_app/features/categories/presentation/screens/category_screen/widgets/vertical_tab_bar.dart';
 import 'package:route_app/features/layout/presentation/screens/widgets/search_and_cart_row.dart';
 import '../../../../../core/widgets/custom_media_query.dart';
@@ -17,7 +18,7 @@ class CategoryScreen extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SvgPicture.asset('assets/images/home-route.svg'),
+          const LogoText(),
           SizedBox(
             height: mediaQueryOfHeight(context: context, multiBy: 0.05),
           ),

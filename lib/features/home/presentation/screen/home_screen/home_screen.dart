@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:route_app/core/constance.dart';
+import 'package:route_app/core/utils/styles.dart';
 import 'package:route_app/core/widgets/custom_media_query.dart';
+import 'package:route_app/core/widgets/logo_text.dart';
 import 'package:route_app/features/home/presentation/screen/home_screen/widgets/carousel_banners.dart';
 import 'package:route_app/features/home/presentation/screen/home_screen/widgets/categories_list_view.dart';
 import 'package:route_app/features/home/presentation/screen/home_screen/widgets/gride_view_of_product.dart';
@@ -26,7 +28,7 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SvgPicture.asset('assets/images/home-route.svg'),
+           const LogoText(),
             SizedBox(
               height: mediaQueryOfHeight(context: context, multiBy: 0.05),
             ),

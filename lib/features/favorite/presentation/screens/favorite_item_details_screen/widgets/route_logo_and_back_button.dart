@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../../../core/constance.dart';
 import '../../../../../../core/utils/styles.dart';
 import '../../../../../../core/widgets/custom_button.dart';
+import '../../../../../../core/widgets/logo_text.dart';
 
 class RouteLogoAndArrowBack extends StatelessWidget {
   const RouteLogoAndArrowBack({super.key});
@@ -13,10 +14,15 @@ class RouteLogoAndArrowBack extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        IconButton(onPressed: (){
-          Navigator.pop(context);
-        }, icon: Icon(Icons.arrow_back_ios_new,color: kPrimaryColor,)),
-        SvgPicture.asset('assets/images/home-route.svg'),
+        IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(
+              Icons.arrow_back_ios_new,
+              color: kPrimaryColor,
+            )),
+        const LogoText(),
       ],
     );
   }

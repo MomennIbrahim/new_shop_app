@@ -8,6 +8,7 @@ import 'package:route_app/core/utils/servic_locator.dart';
 import 'package:route_app/core/utils/styles.dart';
 import 'package:route_app/core/widgets/custom_button.dart';
 import 'package:route_app/core/widgets/custom_navigator.dart';
+import 'package:route_app/core/widgets/logo_text.dart';
 import 'package:route_app/features/person/presentation/screens/person_screen/widgets/current_password_field.dart';
 import 'package:route_app/features/person/presentation/screens/person_screen/widgets/new_password_field.dart';
 import '../../../../../core/widgets/custom_media_query.dart';
@@ -65,7 +66,7 @@ class ChangePasswordScreen extends StatelessWidget {
                           Icons.arrow_back_ios_new,
                           color: kPrimaryColor,
                         )),
-                    SvgPicture.asset('assets/images/home-route.svg'),
+                   const LogoText(),
                   ],
                 ),
                 SizedBox(

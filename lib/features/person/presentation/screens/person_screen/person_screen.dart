@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:route_app/core/constance.dart';
 import 'package:route_app/core/utils/styles.dart';
+import 'package:route_app/core/widgets/logo_text.dart';
 import 'package:route_app/features/auth/presentation/screens/widgets/text_up_field.dart';
 import 'package:route_app/features/person/presentation/screens/person_screen/widgets/change_pass_text_button.dart';
 import 'package:route_app/features/person/presentation/screens/person_screen/widgets/loading_person_screen.dart';
@@ -35,7 +36,7 @@ class PersonScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SvgPicture.asset('assets/images/home-route.svg'),
+                  const LogoText(),
                   SizedBox(
                     height: 24.h,
                   ),
