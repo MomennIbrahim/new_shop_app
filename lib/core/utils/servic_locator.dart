@@ -4,6 +4,7 @@ import 'package:route_app/features/cart/data/repository/cart_repository_implemen
 import 'package:route_app/features/categories/data/repository/categories_repository_implementation.dart';
 import 'package:route_app/features/favorite/data/repository/favorite_repository_implementation.dart';
 import 'package:route_app/features/person/data/repository/person_repository_implementation.dart';
+import 'package:route_app/features/search/data/repository/search_repository_implementation.dart';
 import '../../features/auth/data/repositories/auth_repository_implementation.dart';
 import '../../features/home/data/repository/home_repositories_implementation.dart';
 import 'api_service.dart';
@@ -39,6 +40,8 @@ void setupServiceLocator() {
     getIt.get<ApiService>(),
   ));
 
-
+  getIt.registerSingleton<SearchRepositoryImplementation>(SearchRepositoryImplementation(
+    getIt.get<ApiService>(),
+  ));
 
 }

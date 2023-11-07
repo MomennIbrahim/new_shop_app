@@ -1,4 +1,4 @@
-import 'package:bloc/bloc.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,6 +9,8 @@ import 'package:route_app/core/utils/local_storage.dart';
 import 'package:route_app/features/cart/data/repository/cart_repository_implementation.dart';
 import 'package:route_app/features/cart/presentation/controller/cart_cubit.dart';
 import 'package:route_app/features/categories/data/repository/categories_repository_implementation.dart';
+import 'package:route_app/features/checkout/presentation/screens/checkout_screen.dart';
+import 'package:route_app/features/checkout/presentation/screens/thank_you_screen.dart';
 import 'package:route_app/features/favorite/data/repository/favorite_repository_implementation.dart';
 import 'package:route_app/features/person/data/repository/person_repository_implementation.dart';
 import 'package:route_app/features/splash/splash_screen.dart';
@@ -22,6 +24,8 @@ import 'features/home/presentation/controller/product_cubit/product_cubit.dart';
 import 'features/home/presentation/controller/sub_categories_cubit/sub_categories_cubit.dart';
 import 'features/layout/presentation/controller/layout_cubit/layout_cubit.dart';
 import 'features/person/presentation/controller/person_cubit/person_cubit.dart';
+import 'features/search/data/repository/search_repository_implementation.dart';
+import 'features/search/presentation/controller/search_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -84,6 +88,9 @@ class MyApp extends StatelessWidget {
             create: (context) =>
             CartCubit(getIt.get<CartRepositoriesImplementation>())
         ),
+        BlocProvider(
+          create: (context) => SearchCubit(getIt.get<SearchRepositoryImplementation>()),
+        ),
       ],
       child: ScreenUtilInit(
         designSize: const Size(360, 690),
@@ -94,25 +101,29 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             fontFamily: 'Poppins',
             primaryColor: kPrimaryColor,
+            cardTheme: const CardTheme(
+              color: Colors.white
+            ),
             appBarTheme: AppBarTheme(
               elevation: 0.0,
+              centerTitle: true,
               backgroundColor: Colors.transparent,
               iconTheme: IconThemeData(
                 color: kPrimaryColor
               )
-            )
-            // primarySwatch: MaterialColor(0xff004182, {
-            //   50:kPrimaryColor,
-            //   100:kPrimaryColor,
-            //   200:kPrimaryColor,
-            //   300:kPrimaryColor,
-            //   400:kPrimaryColor,
-            //   500:kPrimaryColor,
-            //   600:kPrimaryColor,
-            //   700:kPrimaryColor,
-            //   800:kPrimaryColor,
-            //   900:kPrimaryColor,
-            // })
+            ),
+            primarySwatch: MaterialColor(0xff06004F, {
+              50:kPrimaryColor,
+              100:kPrimaryColor,
+              200:kPrimaryColor,
+              300:kPrimaryColor,
+              400:kPrimaryColor,
+              500:kPrimaryColor,
+              600:kPrimaryColor,
+              700:kPrimaryColor,
+              800:kPrimaryColor,
+              900:kPrimaryColor,
+            })
           ),
           home: const SplashScreen(),
           builder: EasyLoading.init(),

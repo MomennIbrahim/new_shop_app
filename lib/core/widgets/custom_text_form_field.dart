@@ -14,6 +14,8 @@ class CustomTextFormField extends StatelessWidget {
     required this.labelText,
     required this.validatorText,
     this.enabled = true,
+    this.onFieldSubmitted,
+    this.hasOnSubmitted = false,
   });
 
   final TextEditingController controller;
@@ -22,7 +24,9 @@ class CustomTextFormField extends StatelessWidget {
   final Icon? prefixIcon;
   final Icon? suffixIcon;
   final Function? suffixIconPressed;
+  final Function? onFieldSubmitted;
   final bool hasSuffixIcon;
+  final bool hasOnSubmitted;
   final bool? obscureText;
   final String validatorText;
   final bool enabled;
@@ -36,7 +40,12 @@ class CustomTextFormField extends StatelessWidget {
           obscureText: obscureText ?? false,
           controller: controller,
           keyboardType: keyBoardType,
-          validator: (value){
+          onFieldSubmitted: hasOnSubmitted
+              ? (value) {
+                  onFieldSubmitted!();
+                }
+              : null,
+          validator: (value) {
             if (value!.isEmpty) {
               return validatorText;
             }

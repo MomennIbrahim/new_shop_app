@@ -5,6 +5,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:route_app/core/widgets/custom_navigator.dart';
+import 'package:route_app/features/favorite/presentation/screens/favorite_screen/widgets/add_cart_button.dart';
 import '../../../../../../core/constance.dart';
 import '../../../../../../core/utils/styles.dart';
 import '../../../../../../core/widgets/custom_media_query.dart';
@@ -20,7 +21,7 @@ class FavoriteItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<FavoriteCubit, FavoriteState>(
       builder: (context, state) {
-        if(state is FavoriteSuccessState){
+        if (state is FavoriteSuccessState) {
           return Expanded(
             child: ListView.separated(
               physics: const BouncingScrollPhysics(),
@@ -29,8 +30,10 @@ class FavoriteItem extends StatelessWidget {
               ),
               itemBuilder: (context, index) {
                 return GestureDetector(
-                  onTap: (){
-                    customNavigator(context: context, widget: FavoriteItemDetailsScreen(index: index));
+                  onTap: () {
+                    customNavigator(
+                        context: context,
+                        widget: FavoriteItemDetailsScreen(index: index));
                   },
                   child: SizedBox(
                     height: 113.h,
@@ -61,12 +64,14 @@ class FavoriteItem extends StatelessWidget {
                                 child: Padding(
                                   padding: const EdgeInsets.only(left: 8.0),
                                   child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Padding(
                                         padding: EdgeInsets.only(
                                             top: mediaQueryOfHeight(
-                                                context: context, multiBy: .02)),
+                                                context: context,
+                                                multiBy: .02)),
                                         child: Text(
                                           '${state.favoriteModel.data!.data![index].product!.name}',
                                           maxLines: 1,
@@ -93,23 +98,25 @@ class FavoriteItem extends StatelessWidget {
                                       Expanded(
                                         child: Row(
                                           mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
+                                              MainAxisAlignment.spaceEvenly,
                                           children: [
                                             Text(
                                               'EGP ${state.favoriteModel.data!.data![index].product!.price}',
                                               style: Styles.style14.copyWith(
-                                                  color: const Color(0xff06004F)),
+                                                  color:
+                                                      const Color(0xff06004F)),
                                             ),
                                             SizedBox(
                                               width: mediaQueryOfWidth(
                                                   context: context,
                                                   multiBy: 0.02),
                                             ),
-                                            if (state.favoriteModel
-                                                .data!
-                                                .data![index]
-                                                .product!
-                                                .discount !=
+                                            if (state
+                                                    .favoriteModel
+                                                    .data!
+                                                    .data![index]
+                                                    .product!
+                                                    .discount !=
                                                 0)
                                               Text(
                                                   '${state.favoriteModel.data!.data![index].product!.oldPrice}',
@@ -130,10 +137,11 @@ class FavoriteItem extends StatelessWidget {
                                         maskType: EasyLoadingMaskType.black);
                                     ProductCubit.get(context)
                                         .addProductInFavorite(
-                                        productId: state.favoriteModel.data!
-                                            .data![index].product!.id!)
+                                            productId: state.favoriteModel.data!
+                                                .data![index].product!.id!)
                                         .then((value) {
-                                      FavoriteCubit.get(context).getFavoriteData();
+                                      FavoriteCubit.get(context)
+                                          .getFavoriteData();
                                       EasyLoading.dismiss();
                                     });
                                   },
@@ -144,27 +152,21 @@ class FavoriteItem extends StatelessWidget {
                             ],
                           ),
                         ),
-                        Positioned(
-                          right: 12,
-                          bottom: 8,
-                          child: GestureDetector(
-                              onTap: () {},
-                              child: CircleAvatar(
-                                backgroundColor: kPrimaryColor,
-                                radius: 16,
-                                child: const Icon(
-                                  Icons.add_shopping_cart,
-                                  color: Colors.white,
-                                  size: 20,
-                                ),
-                              )),
-                        ),
-                         if(state.favoriteModel.data!.data![index].product!.discount != 0)
-                           Positioned(
-                          left: 12,
-                          bottom: 4,
-                          child: Image(image: const AssetImage('assets/images/dicount.png',),width: 50.w,height: 50.h,),
-                        ),
+                        CartButton(index: index),
+                        if (state.favoriteModel.data!.data![index].product!
+                                .discount !=
+                            0)
+                          Positioned(
+                            left: 12,
+                            bottom: 4,
+                            child: Image(
+                              image: const AssetImage(
+                                'assets/images/dicount.png',
+                              ),
+                              width: 50.w,
+                              height: 50.h,
+                            ),
+                          ),
                       ],
                     ),
                   ),
@@ -173,10 +175,13 @@ class FavoriteItem extends StatelessWidget {
               itemCount: state.favoriteModel.data!.data!.length,
             ),
           );
-        }else if(state is FavoriteFailureState){
+        } else if (state is FavoriteFailureState) {
           return Text(state.errMessage);
-        }else{
-          return const LoadingFavoriteItem();
+        } else {
+          return const Center(
+              child: CircularProgressIndicator(
+            strokeWidth: 1.8,
+          ));
         }
       },
     );

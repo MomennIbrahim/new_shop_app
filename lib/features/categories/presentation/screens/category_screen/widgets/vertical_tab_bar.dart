@@ -191,7 +191,7 @@ class VerticalTabBar extends StatelessWidget {
                 )
               : Center(child: Center(child: Text(cubit.failure1!.errMessage))),
           fallback: (context) =>
-              const Center(child: LoadingCategoryScreen()),
+               Center(child: CircularProgressIndicator(strokeWidth: 1.8,color: kPrimaryColor,)),
         );
       },
     );

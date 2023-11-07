@@ -33,7 +33,7 @@ class GridViewOfProduct extends StatelessWidget {
               GridView(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  mainAxisSpacing: 5.0,
+                  mainAxisSpacing: 10.0,
                   crossAxisSpacing: 5.0,
                   childAspectRatio: .55.h,
                 ),

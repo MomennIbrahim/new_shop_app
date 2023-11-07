@@ -33,10 +33,10 @@ class ProductItem extends StatelessWidget {
             ));
       },
       child: Card(
-        elevation: 3.0,
+        elevation: 4.0,
         shape: RoundedRectangleBorder(
             borderRadius: Styles.borderRadius15(),
-            side: BorderSide(color: kPrimaryColor)),
+           ),
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Stack(

@@ -9,7 +9,7 @@ class ChangePassTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      child: const Text('Change Password'),
+      child: const Text('Change Password',style: TextStyle(color: Colors.blue),),
       onPressed: () {
         customNavigator(context: context, widget: ChangePasswordScreen());
       },

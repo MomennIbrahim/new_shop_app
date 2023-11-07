@@ -58,12 +58,12 @@ class Data {
     inCart = json['in_cart'];
   }
   int? id;
-  int? price;
+  dynamic price;
   String? image;
   String? name;
   String? description;
   List<String>? images;
   bool? inFavorites;
   bool? inCart;
-  
+
 }

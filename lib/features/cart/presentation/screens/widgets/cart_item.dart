@@ -4,9 +4,12 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:route_app/features/cart/data/model/carts_model.dart';
+import 'package:route_app/features/cart/presentation/controller/cart_cubit.dart';
+import 'package:route_app/features/cart/presentation/screens/widgets/cart_item_details.dart';
 import '../../../../../core/constance.dart';
 import '../../../../../core/utils/styles.dart';
 import '../../../../../core/widgets/custom_media_query.dart';
+import '../../../../../core/widgets/custom_navigator.dart';
 import '../../../../home/presentation/controller/product_cubit/product_cubit.dart';
 
 class CartItem extends StatelessWidget {
@@ -19,9 +22,9 @@ class CartItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // customNavigator(
-        //     context: context,
-        //     widget: FavoriteItemDetailsScreen(index: index));
+        customNavigator(
+            context: context,
+            widget: CartItemDetailsScreen(index: index));
       },
       child: SizedBox(
         height: 113.h,
@@ -43,69 +46,56 @@ class CartItem extends StatelessWidget {
                     child: CachedNetworkImage(
                         fit: BoxFit.contain,
                         height: double.maxFinite,
-                        width: mediaQueryOfWidth(
-                            context: context, multiBy: 0.2),
-                        imageUrl: cartsModel
-                            .data!
-                            .cartItems![index]
-                            .product!
-                            .image!),
+                        width:
+                            mediaQueryOfWidth(context: context, multiBy: 0.2),
+                        imageUrl:
+                            cartsModel.data!.cartItems![index].product!.image!),
                   ),
                   Expanded(
                     child: Padding(
-                      padding:
-                      const EdgeInsets.only(left: 8.0),
+                      padding: const EdgeInsets.only(left: 8.0),
                       child: Column(
-                        crossAxisAlignment:
-                        CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Padding(
                             padding: EdgeInsets.only(
                                 top: mediaQueryOfHeight(
-                                    context: context,
-                                    multiBy: .02)),
+                                    context: context, multiBy: .02)),
                             child: Text(
                               '${cartsModel.data!.cartItems![index].product!.name}',
                               maxLines: 1,
                               overflow: TextOverflow.ellipsis,
-                              style: Styles.style18.copyWith(
-                                  color: const Color(
-                                      0xff06004F)),
+                              style: Styles.style18
+                                  .copyWith(color: const Color(0xff06004F)),
                             ),
                           ),
                           SizedBox(
                             height: mediaQueryOfHeight(
-                                context: context,
-                                multiBy: .003),
+                                context: context, multiBy: .003),
                           ),
                           Text(
                             '${cartsModel.data!.cartItems![index].product!.description}',
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
-                            style: Styles.style14.copyWith(
-                                color: kPrimaryColor),
+                            style:
+                                Styles.style14.copyWith(color: kPrimaryColor),
                           ),
                           SizedBox(
                             height: mediaQueryOfHeight(
-                                context: context,
-                                multiBy: .003),
+                                context: context, multiBy: .003),
                           ),
                           Expanded(
                             child: Row(
-                              mainAxisAlignment:
-                              MainAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Text(
                                   'EGP ${cartsModel.data!.cartItems![index].product!.price}',
                                   style: Styles.style14
-                                      .copyWith(
-                                      color: const Color(
-                                          0xff06004F)),
+                                      .copyWith(color: const Color(0xff06004F)),
                                 ),
                                 SizedBox(
                                   width: mediaQueryOfWidth(
-                                      context: context,
-                                      multiBy: 0.02),
+                                      context: context, multiBy: 0.02),
                                 ),
                                 if (1 != 0)
                                   Text(
@@ -113,8 +103,7 @@ class CartItem extends StatelessWidget {
                                       style: TextStyle(
                                           fontSize: 11.0.sp,
                                           decoration:
-                                          TextDecoration
-                                              .lineThrough)),
+                                              TextDecoration.lineThrough)),
                               ],
                             ),
                           ),
@@ -124,18 +113,13 @@ class CartItem extends StatelessWidget {
                   ),
                   IconButton(
                       onPressed: () {
-                        EasyLoading.show(
-                            maskType:
-                                EasyLoadingMaskType.black);
+                        EasyLoading.show(maskType: EasyLoadingMaskType.black);
                         ProductCubit.get(context)
                             .addToCart(
-                                productId:
-                                    cartsModel
-                                    .data!
-                                    .cartItems![index]
-                                    .product!
-                                    .id!)
+                                productId: cartsModel
+                                    .data!.cartItems![index].product!.id!)
                             .then((value) {
+                          CartCubit.get(context).getCarts();
                           EasyLoading.dismiss();
                         });
                       },
@@ -162,8 +146,7 @@ class CartItem extends StatelessWidget {
                           topLeft: 25,
                           bottomLeft: 25)),
                   child: Row(
-                    mainAxisAlignment:
-                    MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       GestureDetector(
                         child: Text(
@@ -188,9 +171,7 @@ class CartItem extends StatelessWidget {
                 ),
               ),
             ),
-            if (cartsModel.data!.cartItems![index]
-                .product!.discount !=
-                0)
+            if (cartsModel.data!.cartItems![index].product!.discount != 0)
               Positioned(
                 left: 12,
                 bottom: 4,

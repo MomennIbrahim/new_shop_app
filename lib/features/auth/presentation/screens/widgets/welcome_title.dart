@@ -10,7 +10,7 @@ class WelcomeTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: mediaQueryOfWidth(context: context, multiBy: .04)),
-      child: Text('Welcome Back To Route',style: Styles.style24,),
+      child: Text('Welcome Back To Route',style: Styles.style24.copyWith(color: Colors.white),),
     );
   }
 }
